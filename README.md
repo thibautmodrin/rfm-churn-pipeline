@@ -47,12 +47,15 @@ Contexte : Une boutique e-commerce constate une baisse de réachat. Le service m
 
 ## 🗂️ Structure du dépôt (en cours)
 
+```
 rfm-churn-pipeline/
-├── airbyte/ # Config Airbyte source/destination
-├── dbt_project/ # Projet dbt complet (models, tests, docs)
-├── tableau/ # Dashboard + screenshots
-├── data/ # Données simulées clients / commandes
-├── notebooks/ # Modèle de churn (exploration + prédiction)
-├── snowflake_schema.sql # Setup initial du data warehouse
+├── airbyte/                  # Config Airbyte source/destination
+├── dbt_project/              # Projet dbt complet (models, tests, docs)
+├── tableau/                  # Dashboard + screenshots
+├── data/                     # Données simulées clients / commandes
+├── notebooks/                # Modèle de churn (exploration + prédiction)
+├── snowflake_schema.sql      # Setup initial du data warehouse
 ├── requirements.txt
 └── README.md
+```
+
