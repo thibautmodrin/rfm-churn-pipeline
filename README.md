@@ -32,29 +32,44 @@ Contexte : Une boutique e-commerce constate une baisse de réachat. Le service m
 | **dbt**       | Transformation, scoring RFM, prédiction churn, documentation |
 | **Tableau**   | Visualisation des segments et probabilités de churn        |
 | *(optionnel)* **Airflow** | Orchestration du pipeline                     |
+| *(optionnel)* **FastAPI** | Déploiement du modèle de churn via API         |
 
 ---
 
 ## 🔄 Pipeline
 
-
 1. 📥 Airbyte → ingestion depuis CRM (ex : fichiers CSV, HubSpot)
 2. 🧊 Snowflake → stockage des données brutes (raw)
 3. ⚙️ dbt → nettoyage, calcul RFM, prédiction churn, tests
 4. 📈 Tableau → dashboard interactif pour l'équipe marketing
+5. 🔁 *(en cours)* Déploiement API `/predict` avec FastAPI pour exposer le modèle de churn
+
+---
+
+## 🔐 Option avancée : déploiement MLOps via FastAPI *(à venir)*
+
+Le modèle de churn sera également déployé sous forme d’**API REST `/predict`** grâce à FastAPI.
+
+Ce microservice permettra de :
+- Recevoir des données client en JSON
+- Retourner la **probabilité de churn**
+- Être appelé depuis **Airflow ou dbt** via un webhook
+- Stocker automatiquement les résultats dans Snowflake (`marts.churn_predictions`)
+
+Ce composant sera utile pour des cas d'usage **MLOps**, ou pour l’intégration dans des workflows automatisés de segmentation & relance.
 
 ---
 
 ## 🗂️ Structure du dépôt (en cours)
-
 ```
 rfm-churn-pipeline/
-├── airbyte/                  # Config Airbyte source/destination
-├── dbt_project/              # Projet dbt complet (models, tests, docs)
-├── tableau/                  # Dashboard + screenshots
-├── data/                     # Données simulées clients / commandes
-├── notebooks/                # Modèle de churn (exploration + prédiction)
-├── snowflake_schema.sql      # Setup initial du data warehouse
+├── airbyte/ # Config Airbyte source/destination
+├── dbt_project/ # Projet dbt complet (models, tests, docs)
+├── tableau/ # Dashboard + screenshots
+├── data/ # Données simulées clients / commandes
+├── notebooks/ # Modèle de churn (exploration + prédiction)
+├── api/ # (à venir) Déploiement FastAPI du modèle de churn
+├── snowflake_schema.sql # Setup initial du data warehouse
 ├── requirements.txt
 └── README.md
 ```
