@@ -43,6 +43,7 @@ Contexte : Une boutique e-commerce constate une baisse de réachat. Le service m
 3. ⚙️ dbt → nettoyage, calcul RFM, prédiction churn, tests
 4. 📈 Tableau → dashboard interactif pour l'équipe marketing
 
+---
 
 ## 🗂️ Structure du dépôt (en cours)
 
